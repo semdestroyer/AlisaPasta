@@ -1,7 +1,5 @@
 import urllib.request
-from http.server import *
 import json
-import logging
 from flask import Flask, request
 app = Flask(__name__)
 
