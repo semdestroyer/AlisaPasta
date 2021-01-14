@@ -48,6 +48,6 @@ def getPaste():
 def index():
     return "<h1>Welcome to our server !!</h1>"
 if __name__ == '__main__':
-    app.run(5000)
+    app.run(port=5000)
     #5000
     #app.run(port=int(os.environ.get('PORT', 33500)))
