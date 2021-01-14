@@ -34,23 +34,15 @@ def handle_dialog(res,req):
 
 
 def getPaste():
+    paste = urllib.request.urlopen("https://pastach.ru/p/random")
+    pst = paste.read()
 
+    out = pst.decode("utf8")
 
-    lleng = 1024
+    html = BeautifulSoup(out, features="html.parser")
 
+    pasta = html.article.section.text[:1024].replace("\n", " ")
 
-    while lleng >= 1024: # remove for speed but u need to slice pasta
-            paste = urllib.request.urlopen("https://pastach.ru/p/random")
-
-            pst = paste.read()
-
-            out = pst.decode("utf8")
-
-            html = BeautifulSoup(out, features="html.parser")
-            lleng = len(html.article.section.text)
-            print(lleng)
-            #pasta = html.article.section.text[:1024].replace("\n"," ")
-            pasta = html.article.section.text.replace("\n"," ")
     return pasta
 
 if __name__ == '__main__':
