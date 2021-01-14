@@ -44,7 +44,10 @@ def getPaste():
     pasta = html.article.section.text[:1024].replace("\n"," ")
     return pasta
 #app.run( port=int(os.environ.get('PORT', 5000)))
+@app.route('/index')
+def index():
+    return "<h1>Welcome to our server !!</h1>"
 if __name__ == '__main__':
-    #app.run()
+    app.run(5000)
     #5000
-    app.run(port=int(os.environ.get('PORT', 33500)))
+    #app.run(port=int(os.environ.get('PORT', 33500)))
