@@ -34,20 +34,27 @@ def handle_dialog(res,req):
 
 
 def getPaste():
-    paste = urllib.request.urlopen("https://pastach.ru/p/random")
-    pst = paste.read()
 
-    out = pst.decode("utf8")
 
-    html = BeautifulSoup(out, features="html.parser")
+    lleng = 1024
 
-    pasta = html.article.section.text[:1024].replace("\n"," ")
+
+    while lleng >= 1024: # remove for speed but u need to slice pasta
+            paste = urllib.request.urlopen("https://pastach.ru/p/random")
+
+            pst = paste.read()
+
+            out = pst.decode("utf8")
+
+            html = BeautifulSoup(out, features="html.parser")
+            lleng = len(html.article.section.text)
+            print(lleng)
+            #pasta = html.article.section.text[:1024].replace("\n"," ")
+            pasta = html.article.section.text.replace("\n"," ")
     return pasta
-#app.run( port=int(os.environ.get('PORT', 5000)))
-@app.route('/index')
-def index():
-    return "<h1>Welcome to our server !!</h1>"
+
 if __name__ == '__main__':
+
     app.run(port=5000)
-    #5000
-    #app.run(port=int(os.environ.get('PORT', 33500)))
+    print(getPaste())
+
