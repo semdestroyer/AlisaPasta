@@ -1,5 +1,6 @@
 import urllib.request
 import json
+import os
 from flask import Flask, request
 app = Flask(__name__)
 
@@ -11,9 +12,9 @@ def main():
 
     response = {
 
-            "version":"1.0",
-            # "version":request.json['version'],
-            # "version": request.json['session'],
+
+            "version":request.json['version'],
+            "session": request.json['session'],
             "response": {
                 "end_session": False
             },
@@ -42,4 +43,6 @@ def getPaste():
 
     pasta = html.article.section.text[:1024].replace("\n"," ")
     return pasta
-app.run(port=80)
+#app.run( port=int(os.environ.get('PORT', 5000)))
+if __name__ == '__main__':
+    app.run()
