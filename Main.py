@@ -46,4 +46,5 @@ def getPaste():
 #app.run( port=int(os.environ.get('PORT', 5000)))
 if __name__ == '__main__':
     #app.run()
-    app.run(port=int(os.environ.get('PORT', 5000)))
+    #5000
+    app.run(port=int(os.environ.get('PORT', 33500)))
